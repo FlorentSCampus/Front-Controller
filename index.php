@@ -2,7 +2,7 @@
 <html lang="fr">
 
 <?php
-$metaTitle = 'fornt_controller';
+$metaTitle = 'front_controller';
 ?>
 
 <head>
@@ -13,7 +13,14 @@ $metaTitle = 'fornt_controller';
 </head>
 
 <body>
+    <?php
+    if ($_GET["page"] === "page1.php") { ?>
     <?php require_once 'src/page1.php' ?>
+    <?php } elseif ($_GET["page"] === "page2.php") { ?>
     <?php require_once 'src/page2.php' ?>
+    <?php } elseif ($_GET["page"] === "page3.php") { ?>
     <?php require_once 'src/page3.php' ?>
+    <?php } else { ?>
+        <?php require_once 'src/404.php' ?>
+    <?php } ?>
 </body>
