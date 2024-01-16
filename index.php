@@ -13,7 +13,7 @@ $metaTitle = 'fornt_controller';
 </head>
 
 <body>
-    <?php require_once 'src/header.php' ?>
-    <?php require_once 'src/content.php' ?>
-    <?php require_once 'src/footer.php' ?>
+    <?php require_once 'src/page1.php' ?>
+    <?php require_once 'src/page2.php' ?>
+    <?php require_once 'src/page3.php' ?>
 </body>
