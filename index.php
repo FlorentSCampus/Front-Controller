@@ -16,5 +16,4 @@ $metaTitle = 'fornt_controller';
     <?php require_once 'src/header.php' ?>
     <?php require_once 'src/content.php' ?>
     <?php require_once 'src/footer.php' ?>
-
 </body>
