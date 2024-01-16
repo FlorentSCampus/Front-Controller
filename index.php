@@ -16,13 +16,13 @@ $filter = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_ENCODED);
 <body>
     <?php
     if ($_GET["page"] === $filter) {
-        if ($_GET["page"] === 'page1.php') { ?>
+        if ($_GET["page"] === 'page1') { ?>
             <?php require_once 'src/page1.php' ?>
-        <?php } elseif ($_GET["page"] === 'page2.php') { ?>
+        <?php } elseif ($_GET["page"] === 'page2') { ?>
             <?php require_once 'src/page2.php' ?>
-        <?php } elseif ($_GET["page"] === 'page3.php') { ?>
+        <?php } elseif ($_GET["page"] === 'page3') { ?>
             <?php require_once 'src/page3.php' ?>
-            <?php } elseif ($_GET["page"] === 'contact.php') { ?>
+            <?php } elseif ($_GET["page"] === 'contact') { ?>
             <?php require_once 'src/contact.php' ?>
         <?php } else { ?>
             <?php require_once 'src/404.php' ?>
