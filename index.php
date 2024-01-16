@@ -3,6 +3,7 @@
 
 <?php
 $metaTitle = 'front_controller';
+$filter = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_ENCODED);
 ?>
 
 <head>
@@ -14,13 +15,17 @@ $metaTitle = 'front_controller';
 
 <body>
     <?php
-    if ($_GET["page"] === "page1.php") { ?>
-    <?php require_once 'src/page1.php' ?>
-    <?php } elseif ($_GET["page"] === "page2.php") { ?>
-    <?php require_once 'src/page2.php' ?>
-    <?php } elseif ($_GET["page"] === "page3.php") { ?>
-    <?php require_once 'src/page3.php' ?>
-    <?php } else { ?>
-        <?php require_once 'src/404.php' ?>
+    if ($_GET["page"] === $filter) {
+        if ($_GET["page"] === 'page1.php') { ?>
+            <?php require_once 'src/page1.php' ?>
+        <?php } elseif ($_GET["page"] === 'page2.php') { ?>
+            <?php require_once 'src/page2.php' ?>
+        <?php } elseif ($_GET["page"] === 'page3.php') { ?>
+            <?php require_once 'src/page3.php' ?>
+        <?php } else { ?>
+            <?php require_once 'src/404.php' ?>
+        <?php }
+    } else { ?>
+        <p>L'URL [<?= $_GET['page'] ?>] n'est pas valide</p>
     <?php } ?>
 </body>
