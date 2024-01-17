@@ -42,7 +42,7 @@
             </p>
         </div>
         <div class="col-12 col-md-4 d-flex align-items-center justify-content-center mb-4">
-            <a class="text-light" href="src/contact.html">
+            <a class="text-light" href="index.php?page=contact">
                 Nous contacter
             </a>
         </div>
