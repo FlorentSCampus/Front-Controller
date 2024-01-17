@@ -5,20 +5,33 @@ $filename = $filename . $date . ".txt";
 
 $filters = array(
     "gender" => FILTER_DEFAULT,
-    "first_name" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-    "last_name" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+    "first_name" => FILTER_SANITIZE_SPECIAL_CHARS,
+    "last_name" => FILTER_SANITIZE_SPECIAL_CHARS,
     "email" => FILTER_VALIDATE_EMAIL,
     "radio" => FILTER_DEFAULT,
-    "message" => FILTER_SANITIZE_FULL_SPECIAL_CHARS
+    "message" => FILTER_SANITIZE_SPECIAL_CHARS
 );
 
 $result = filter_var_array($_POST, $filters);
 $length = count($result);
 
-if ($is_post && empty($error)) {
-    if ($file_exists) {
-        //file_put_contents("./data/" . $filename, $data);
+$data = print_r($result, true);
+
+$is_empty = is_empty($result, $length);
+
+if (!$is_empty) {
+    file_put_contents("./data/" . $filename, $data);
+}
+
+function is_empty($array, $length)
+{
+    for ($i = 0; $i < $length; $i++) {
+        if (empty(array_values($array)[$i])) {
+            return true;
+        }
     }
+
+    return false;
 }
 ?>
 
@@ -34,13 +47,13 @@ if ($is_post && empty($error)) {
     </div>
     <br>
     <div class="identity">
-    <?= (empty(array_values($result)[1])) ? "Veuillez renseigner votre prénom" : null; ?>
+        <?= (empty(array_values($result)[1])) ? "Veuillez renseigner votre prénom" : null; ?>
         <div>
             <label for="first_name">Prénom</label>
             <input type="text" id="first_name" name="first_name" />
         </div>
         <br>
-    <?= (empty(array_values($result)[2])) ? "Veuillez renseigner votre nom" : null; ?>
+        <?= (empty(array_values($result)[2])) ? "Veuillez renseigner votre nom" : null; ?>
         <div>
             <label for="last_name">Nom</label>
             <input type="text" id="last_name" name="last_name" />
@@ -71,7 +84,15 @@ if ($is_post && empty($error)) {
         </fieldset>
     </div>
     <br>
-    <?= (empty(array_values($result)[5])) ? "Veuillez renseigner votre message" : null; ?>
+    <?php
+    if (empty(array_values($result)[5])) {
+        echo "Veuillez renseigner votre message <br>";
+    } else {
+        if (strlen(array_values($result)[5]) < 5) {
+            echo "Votre message doit contenir au moins 5 lettres";
+        }
+    }
+    ?>
     <div class="message">
         <label for="message">Message</label>
         <textarea id="message" name="message" minlength="0" placeholder="Message here..."></textarea>
@@ -85,7 +106,7 @@ if ($is_post && empty($error)) {
 <br>
 
 <?php
-for ($i = 0; $i < count($result); $i++) {
+for ($i = 0; $i < $length; $i++) {
     if (empty(array_values($result)[$i])) {
         echo "Field [" . array_keys($result)[$i] . "] is empty <br>";
     }
