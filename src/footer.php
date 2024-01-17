@@ -1,6 +1,8 @@
 <footer>
-    <?= "Date de première visite : " . $dateFirstVisit ?>
     <div class="row g-0 pt-4 pb-5">
+        <p class="text-center text-light m-0">
+            <?= "Date de première visite : " . $_SESSION["date"] ?>
+        </p>
         <div class="col-12 col-md-4 d-flex justify-content-center align-items-center mb-4">
             <div class="d-flex align-items-center p-2 bg-light rounded-pill">
                 <svg width="329" height="186" viewBox="0 0 329 186" fill="none" xmlns="http://www.w3.org/2000/svg" style="height: 25px; width:auto;">
