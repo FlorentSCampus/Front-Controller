@@ -41,16 +41,19 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active disabled" aria-current="page" href="#">Accueil</a>
+                        <a class="nav-link text-primary" href="index.php?page=content">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-primary" href="src/team.html">Team</a>
+                        <a class="nav-link text-primary" href="index.php?page=contact">CONTACT</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-primary" href="src/catalogue.html">Catalogue</a>
+                        <a class="nav-link text-primary" href="index.php?page=page1">PAGE 1</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-primary" href="src/contact.html">Contact</a>
+                        <a class="nav-link text-primary" href="index.php?page=page2">PAGE 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-primary" href="index.php?page=page3">PAGE 3</a>
                     </li>
                 </ul>
             </div>
