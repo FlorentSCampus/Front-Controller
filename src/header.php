@@ -1,7 +1,17 @@
+<?php
+session_start();
+$dateFirstVisit = date("Y-m-d H:i:s");
+$countViewPage = null; // TO DO
+
+if (!isset($_SESSION["date"])) {
+    $_SESSION["date"] = $dateFirstVisit;
+}
+?>
+
 <header class="sticky-top">
     <nav class="navbar navbar-expand-lg bg-primary-subtle">
         <div class="container-fluid">
-            <a class="navbar-brand text-primary disabled" href="index.html" aria-label="Cliquez pour être redirigé vers la homepage">
+            <a class="navbar-brand text-primary disabled" href="index.php?page=content" aria-label="Cliquez pour être redirigé vers la homepage">
                 <svg width="329" height="186" viewBox="0 0 329 186" fill="none" xmlns="http://www.w3.org/2000/svg" style="height: 25px; width:auto;">
                     <g style="mix-blend-mode:multiply" filter="url(#filter0_d_0_1)">
                         <circle cx="93" cy="89" r="89" fill="#0066FF" />
