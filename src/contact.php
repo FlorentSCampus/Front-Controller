@@ -17,13 +17,13 @@ $length = count($result);
 
 $data = print_r($result, true);
 
-$is_empty = is_empty($result, $length);
+$isEmpty = isEmpty($result, $length);
 
-if (!$is_empty) {
+if (!$isEmpty) {
     file_put_contents("./data/" . $filename, $data);
 }
 
-function is_empty($array, $length)
+function isEmpty($array, $length)
 {
     for ($i = 0; $i < $length; $i++) {
         if (empty(array_values($array)[$i])) {
