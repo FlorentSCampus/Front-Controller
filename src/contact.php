@@ -3,18 +3,14 @@ $date = date('__Y_m_d__H_i_s');
 $filename = 'contact';
 $filename = $filename . $date . '.txt';
 
-$filter = filter_input_array(INPUT_POST, $_POST);
-$data = json_encode($filter);
-
-echo $data; // cherche un moyen de retourner le tableau de façon lisible
+$data_filter = filter_input_array(INPUT_POST, $_POST);
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     if (!file_exists("./data/" . $filename)) {
-        //file_put_contents("./data/" . $filename, $data);
+        file_put_contents("./data/" . $filename, print_r($data_filter, true));
     }
 }
 ?>
-
 
 <form action="index.php?page=contact" method="post">
     <div class="select">
