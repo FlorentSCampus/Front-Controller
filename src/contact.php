@@ -3,11 +3,12 @@ $date = date('__Y_m_d__H_i_s');
 $filename = 'contact';
 $filename = $filename . $date . '.txt';
 
-$data_filter = filter_input_array(INPUT_POST, $_POST);
+$filter = filter_input_array(INPUT_POST, $_POST);
+$data = print_r($data_filter, true);
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     if (!file_exists("./data/" . $filename)) {
-        file_put_contents("./data/" . $filename, print_r($data_filter, true));
+        file_put_contents("./data/" . $filename, $data);
     }
 }
 ?>
