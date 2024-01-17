@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+html,
+body {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+footer>div {
+    background: #052c65;
+}
+
+.carousel-item img {
+    height: 600px;
+    object-fit: cover;
+}
+
+#carouselExampleCaptions::before {
+    display: block;
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+#carouselExampleCaptions::after {
+    display: none;
+}
+
+@media (max-width: 575.98px) {
+    .banner-profile {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .desc-profile h2,
+    .desc-profile p {
+        text-align: center;
+    }
+}
+
+@media (min-width: 992px) {
+    .carousel-item img {
+        height: 500px;
+    }
+
+    #carouselExampleCaptions::before {
+        display: none;
+    }
+
+    #carouselExampleCaptions:hover::after {
+        display: block;
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        background: rgba(0, 0, 0, 0.5);
+    }
+}
