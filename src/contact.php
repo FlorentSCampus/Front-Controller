@@ -1,42 +1,10 @@
 <?php
-$date = date("__Y_m_d__H_i_s");
-$filename = "contact";
-$filename = $filename . $date . ".txt";
-
-$filters = array(
-    "gender" => FILTER_DEFAULT,
-    "first_name" => FILTER_SANITIZE_SPECIAL_CHARS,
-    "last_name" => FILTER_SANITIZE_SPECIAL_CHARS,
-    "email" => FILTER_VALIDATE_EMAIL,
-    "radio" => FILTER_DEFAULT,
-    "message" => FILTER_SANITIZE_SPECIAL_CHARS
-);
-
-$result = filter_var_array($_POST, $filters);
-$length = count($result);
-
-$data = print_r($result, true);
-
-$isEmpty = isEmpty($result, $length);
-
-if (!$isEmpty) {
-    file_put_contents("./data/" . $filename, $data);
-}
-
-function isEmpty($array, $length)
-{
-    for ($i = 0; $i < $length; $i++) {
-        if (empty(array_values($array)[$i])) {
-            return true;
-        }
-    }
-
-    return false;
-}
+require_once "processing.php";
+require_once "error.php";
 ?>
 
 <form action="index.php?page=contact" method="post">
-    <?= (empty(array_values($result)[0])) ? "Veuillez sélectionner un entrée dans la liste ci-dessous" : null; ?>
+    <?= (empty(array_values($result)[0])) ? $errors["gender"] : null; ?>
     <div class="select">
         <label for="gender">Civilité</label>
         <select id="gender" name="gender">
@@ -47,26 +15,26 @@ function isEmpty($array, $length)
     </div>
     <br>
     <div class="identity">
-        <?= (empty(array_values($result)[1])) ? "Veuillez renseigner votre prénom" : null; ?>
+        <?= (empty(array_values($result)[1])) ? $errors["firstName"] : null; ?>
         <div>
-            <label for="first_name">Prénom</label>
-            <input type="text" id="first_name" name="first_name" />
+            <label for="firstName">Prénom</label>
+            <input type="text" id="firstName" name="firstName" />
         </div>
         <br>
-        <?= (empty(array_values($result)[2])) ? "Veuillez renseigner votre nom" : null; ?>
+        <?= (empty(array_values($result)[2])) ? $errors["lastName"] : null; ?>
         <div>
-            <label for="last_name">Nom</label>
-            <input type="text" id="last_name" name="last_name" />
+            <label for="lastName">Nom</label>
+            <input type="text" id="lastName" name="lastName" />
         </div>
     </div>
     <br>
-    <?= (empty(array_values($result)[3])) ? "Veuillez renseigner votre email" : null; ?>
+    <?= (empty(array_values($result)[3])) ? $errors["email"] : null; ?>
     <div class="email">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" />
     </div>
     <br>
-    <?= (empty(array_values($result)[4])) ? "Veuillez sélectionner une option" : null; ?>
+    <?= (empty(array_values($result)[4])) ? $errors["radio"] : null; ?>
     <div class="object">
         <fieldset>
             <div>
@@ -86,10 +54,10 @@ function isEmpty($array, $length)
     <br>
     <?php
     if (empty(array_values($result)[5])) {
-        echo "Veuillez renseigner votre message <br>";
+        echo $errors["message"];
     } else {
         if (strlen(array_values($result)[5]) < 5) {
-            echo "Votre message doit contenir au moins 5 lettres";
+            echo $errors["messageLetters"];
         }
     }
     ?>
