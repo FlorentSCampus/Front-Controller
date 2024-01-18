@@ -1,3 +1,5 @@
+<!-- PROBLEME D'AFFICHAGE DU CONTACT (PEUT ÊTRE LE FICHIER PROCESSING !) -->
+
 <?php
 require_once "processing.php";
 require_once "error.php";
