@@ -1,6 +1,5 @@
 <?php
 $metaTitle = "front_controller";
-$filter = filter_input(INPUT_GET, "page", FILTER_SANITIZE_ENCODED);
 ?>
 
 <!DOCTYPE html>
@@ -20,23 +19,26 @@ $filter = filter_input(INPUT_GET, "page", FILTER_SANITIZE_ENCODED);
     <?php require_once "src/header.php" ?>
 
     <?php
-    if ($_GET["page"] === $filter) {
-        if ($_GET["page"] === "content") {
-            require_once "src/content.php";
-        } elseif ($_GET["page"] === "contact") {
-            require_once "src/contact.php";
-        } elseif ($_GET["page"] === "page1") {
-            require_once "src/page1.php";
-        } elseif ($_GET["page"] === "page2") {
-            require_once "src/page2.php";
-        } elseif ($_GET["page"] === "page3") {
-            require_once "src/page3.php";
+    $paths = array(
+        "contact" => "src/contact.php",
+        "content" => "src/content.php",
+        "page1" => "src/page1.php",
+        "page2" => "src/page2.php",
+        "page3" => "src/page3.php"
+    );
+
+    ob_start();
+    for ($i = 0; $i < count($paths); $i++) {
+        if ($_GET["page"] === array_keys($paths)[$i]) {
+            require_once array_values($paths)[$i];
         } else {
-            require_once "src/404.php";
+            require_once "src/404.php"; // ne doit afficher la page que si aucune page n'existe !
         }
-    } else { ?>
-        <p>L"URL [<?= $_GET["page"] ?>] n"est pas valide</p>
-    <?php } ?>
+    }
+    $render = ob_get_clean();
+    echo $render;
+    ?>
+
 
     <?php require_once "src/footer.php" ?>
 
