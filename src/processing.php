@@ -3,12 +3,14 @@ $date = date("__Y_m_d__H_i_s");
 $filename = "contact";
 $filename = $filename . $date . ".txt";
 
-$isValid = array(
+$validers = array(
     "email" => FILTER_VALIDATE_EMAIL
 );
 
+$isValid = filter_input_array(INPUT_POST, $validers);
+
 if ($isValid) {
-    $filters = array(
+    $cleaners = array(
         "gender" => FILTER_DEFAULT,
         "firstName" => FILTER_SANITIZE_SPECIAL_CHARS,
         "lastName" => FILTER_SANITIZE_SPECIAL_CHARS,
@@ -18,14 +20,13 @@ if ($isValid) {
     );
 }
 
-$result = filter_input_array(INPUT_POST, $filters);
+$result = filter_input_array(INPUT_POST, $cleaners);
 $length = count($result);
-
-$data = print_r($result, true);
 
 $isEmpty = isEmpty($result, $length);
 
 if (!$isEmpty) {
+    $data = print_r($result, true);
     file_put_contents("./data/" . $filename, $data);
 }
 
