@@ -1,6 +1,5 @@
 <?php
 $errors = array(
-    "404" => require_once "404.php",
     "gender" => "Veuillez sélectionner un entrée dans la liste ci-dessous",
     "firstName" => "Veuillez renseigner votre prénom",
     "lastName" => "Veuillez renseigner votre nom",
