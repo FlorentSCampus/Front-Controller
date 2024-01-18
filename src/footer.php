@@ -1,7 +1,8 @@
 <footer>
     <div class="row g-0 pt-4 pb-5">
         <p class="text-center text-light m-0">
-            <?= "Date de première visite : " . $_SESSION["date"] ?>
+            <?= "Date de première visite : " . $_SESSION["date"] . "<br>" ?>
+            <?= "Nombre de pages visitées : " . $_SESSION["visit"] . "<br><br>" ?>
         </p>
         <div class="col-12 col-md-4 d-flex justify-content-center align-items-center mb-4">
             <div class="d-flex align-items-center p-2 bg-light rounded-pill">
