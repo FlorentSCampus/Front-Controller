@@ -6,9 +6,15 @@ if (!isset($_SESSION["date"])) {
     $_SESSION["date"] = $dateFirstVisit;
 }
 
-if (isset($_SESSION["visit"]) && $_SESSION["currentPage"] !== $_GET["page"]) {
-    $_SESSION["visit"] = $_SESSION["visit"] + 1;
-    $_SESSION["currentPage"] = $_GET["page"];
+if (isset($_SESSION["visit"])) {
+    if ($_SESSION["currentPage"] !== $_GET["page"]) {
+        $_SESSION["visit"] = $_SESSION["visit"] + 1;
+        $_SESSION["currentPage"] = $_GET["page"];
+    } else {
+        $_SESSION["currentPage"] = $_GET["page"];
+    }
+} else {
+    $_SESSION["visit"] = 1;
 }
 ?>
 
