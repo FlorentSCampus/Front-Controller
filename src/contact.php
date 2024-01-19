@@ -48,11 +48,13 @@
     </div>
     <br>
     <?php
-    if (isset($result) && empty(array_values($result)[5])) {
-        echo $errors['message'];
+    if (isset($result)) {
+        if (empty(array_values($result)[5])) {
+            echo $errors['message'];
     } else {
         if (strlen(array_values($result)[5]) < 5) {
-            echo $errors['messageLetters'];
+                echo $errors['messageLetters'];
+            }
         }
     }
     ?>
