@@ -16,7 +16,11 @@ $metaTitle = "front_controller";
 </head>
 
 <body>
-    <?php require_once "src/header.php" ?>
+    <?php
+    require_once "src/header.php";
+    require_once 'src/processing.php';
+    require_once 'src/error.php';
+    ?>
 
     <?php
     $paths = array(
@@ -32,7 +36,7 @@ $metaTitle = "front_controller";
         if ($_GET["page"] === array_keys($paths)[$i]) {
             require_once array_values($paths)[$i];
         } else {
-            require_once "src/404.php"; // ne doit afficher la page que si aucune page n'existe !
+            require_once "src/404.php";
         }
     }
     $render = ob_get_clean();
