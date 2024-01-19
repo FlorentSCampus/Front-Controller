@@ -32,7 +32,7 @@ if (!empty($result)) {
 
 $isEmpty = isEmpty($result, $length);
 
-if (!$isEmpty) {
+if (isset($result) && !$isEmpty) {
     $data = print_r($result, true);
     file_put_contents('./data/' . $filename, $data);
 }
