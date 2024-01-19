@@ -1,7 +1,7 @@
 <?php
 $date = date('__Y_m_d__H_i_s');
 $filename = 'contact';
-$filename = $filename . $date . '.txt';
+$file = $filename . $date . '.txt';
 
 $validers = array(
     'email' => FILTER_VALIDATE_EMAIL
@@ -34,7 +34,7 @@ $isEmpty = isEmpty($result, $length);
 
 if (isset($result) && !$isEmpty) {
     $data = print_r($result, true);
-    file_put_contents('./data/' . $filename, $data);
+    file_put_contents('./data/' . $file, $data);
 }
 
 function isEmpty($array, $length)
