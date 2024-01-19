@@ -17,12 +17,8 @@ $metaTitle = "front_controller";
 
 <body>
     <?php
-    require_once "src/header.php";
-    require_once 'src/processing.php';
-    require_once 'src/error.php';
-    ?>
+    $pageExists = false;
 
-    <?php
     $paths = array(
         "contact" => "src/contact.php",
         "content" => "src/content.php",
@@ -32,19 +28,25 @@ $metaTitle = "front_controller";
     );
 
     ob_start();
-    for ($i = 0; $i < count($paths); $i++) {
+    for ($i = 0; $i < count($paths) && !$pageExists; $i++) {
         if ($_GET["page"] === array_keys($paths)[$i]) {
+            require_once 'src/processing.php';
+            require_once 'src/error.php';
+
+            require_once "src/header.php";
             require_once array_values($paths)[$i];
-        } else {
-            require_once "src/404.php";
+            require_once "src/footer.php";
+
+            $pageExists = true;
         }
+    }
+
+    if (!$pageExists) {
+        require_once "src/404.php";
     }
     $render = ob_get_clean();
     echo $render;
     ?>
-
-
-    <?php require_once "src/footer.php" ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
