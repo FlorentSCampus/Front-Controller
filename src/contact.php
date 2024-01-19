@@ -1,8 +1,3 @@
-<?php
-require_once 'processing.php';
-require_once 'error.php';
-?>
-
 <form action='index.php?page=contact' method='post'>
     <?= (isset($result) && empty(array_values($result)[0])) ? $errors['gender'] : null; ?>
     <div class='select'>
