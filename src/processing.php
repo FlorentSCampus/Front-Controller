@@ -9,6 +9,8 @@ $validers = array(
 
 $isValid = filter_input_array(INPUT_POST, $validers);
 
+$cleaners = [];
+
 if ($isValid) {
     $cleaners = array(
         'gender' => FILTER_DEFAULT,
@@ -21,7 +23,12 @@ if ($isValid) {
 }
 
 $result = filter_input_array(INPUT_POST, $cleaners);
-$length = count($result);
+
+$length = 0;
+
+if (!empty($result)) {
+    $length = count($result);
+}
 
 $isEmpty = isEmpty($result, $length);
 
@@ -33,7 +40,7 @@ if (!$isEmpty) {
 function isEmpty($array, $length)
 {
     for ($i = 0; $i < $length; $i++) {
-        if (empty(array_values($array)[$i])) {
+        if (empty(array_values($array)[$i]) || strlen(array_values($array)[5]) < 5) {
             return true;
         }
     }
