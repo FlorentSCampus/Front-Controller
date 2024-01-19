@@ -1,8 +1,6 @@
 <?php
 session_start();
 $dateFirstVisit = date('Y-m-d H:i:s');
-$_SESSION['visit'];
-$_SESSION['currentPage'];
 
 if (!isset($_SESSION['date'])) {
     $_SESSION['date'] = $dateFirstVisit;
@@ -11,12 +9,12 @@ if (!isset($_SESSION['date'])) {
 if (isset($_SESSION['visit'])) {
     if ($_SESSION['currentPage'] !== $_GET['page']) {
         $_SESSION['visit'] = $_SESSION['visit'] + 1;
-        $_SESSION['currentPage'] = $_GET['page'];
-    } else {
-        $_SESSION['currentPage'] = $_GET['page'];
     }
+    
+    $_SESSION['currentPage'] = $_GET['page'];
 } else {
     $_SESSION['visit'] = 1;
+    $_SESSION['currentPage'] = $_GET['page'];
 }
 ?>
 
