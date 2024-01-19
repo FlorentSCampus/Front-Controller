@@ -1,22 +1,22 @@
 <?php
-$date = date("__Y_m_d__H_i_s");
-$filename = "contact";
-$filename = $filename . $date . ".txt";
+$date = date('__Y_m_d__H_i_s');
+$filename = 'contact';
+$filename = $filename . $date . '.txt';
 
 $validers = array(
-    "email" => FILTER_VALIDATE_EMAIL
+    'email' => FILTER_VALIDATE_EMAIL
 );
 
 $isValid = filter_input_array(INPUT_POST, $validers);
 
 if ($isValid) {
     $cleaners = array(
-        "gender" => FILTER_DEFAULT,
-        "firstName" => FILTER_SANITIZE_SPECIAL_CHARS,
-        "lastName" => FILTER_SANITIZE_SPECIAL_CHARS,
-        "email" => FILTER_SANITIZE_EMAIL,
-        "radio" => FILTER_DEFAULT,
-        "message" => FILTER_SANITIZE_SPECIAL_CHARS
+        'gender' => FILTER_DEFAULT,
+        'firstName' => FILTER_SANITIZE_SPECIAL_CHARS,
+        'lastName' => FILTER_SANITIZE_SPECIAL_CHARS,
+        'email' => FILTER_SANITIZE_EMAIL,
+        'radio' => FILTER_DEFAULT,
+        'message' => FILTER_SANITIZE_SPECIAL_CHARS
     );
 }
 
@@ -27,7 +27,7 @@ $isEmpty = isEmpty($result, $length);
 
 if (!$isEmpty) {
     $data = print_r($result, true);
-    file_put_contents("./data/" . $filename, $data);
+    file_put_contents('./data/' . $filename, $data);
 }
 
 function isEmpty($array, $length)
