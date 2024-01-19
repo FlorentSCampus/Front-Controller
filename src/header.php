@@ -1,7 +1,8 @@
 <?php
 session_start();
 $dateFirstVisit = date('Y-m-d H:i:s');
-$_SESSION['currentPage'] = null;
+$_SESSION['visit'];
+$_SESSION['currentPage'];
 
 if (!isset($_SESSION['date'])) {
     $_SESSION['date'] = $dateFirstVisit;
